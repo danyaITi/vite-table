@@ -2,10 +2,15 @@ import { useMemo, useState } from 'react';
 import { TypePost } from '../types/types';
 import img from '../assets/group.png';
 
-const Table = ({ posts }: { posts: TypePost[] }) => {
+type ObjSort = {
+	key: string;
+	name: string;
+}[];
+
+const Table: React.FC<{ posts: TypePost[] }> = ({ posts }) => {
 	const [sorting, setSorting] = useState<boolean>(false);
 	const [bySort, setBySort] = useState<string>('');
-	const obj = [
+	const obj: ObjSort = [
 		{
 			key: 'id',
 			name: 'ID'
@@ -46,6 +51,7 @@ const Table = ({ posts }: { posts: TypePost[] }) => {
 				</tr>
 			));
 	}, [sorting, posts, bySort]);
+
 	return (
 		<table className='shadow-xl bg-white'>
 			<thead>

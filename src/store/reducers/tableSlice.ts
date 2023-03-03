@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface TableState {
 	currentPage: number;
@@ -12,7 +12,7 @@ export const tableSlice = createSlice({
 	name: 'table',
 	initialState,
 	reducers: {
-		setCurrentPage: (state, action) => {
+		setCurrentPage: (state, action: PayloadAction<number>) => {
 			state.currentPage = action.payload;
 		}
 	}

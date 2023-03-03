@@ -1,10 +1,9 @@
-const Search = ({
-	onSearch,
-	value
-}: {
+interface SearchProps {
 	onSearch: (arg: string) => void;
 	value: string;
-}) => {
+}
+
+const Search: React.FC<SearchProps> = ({ onSearch, value }) => {
 	return (
 		<div className='mb-3 xl:w-96 bg-slate-600'>
 			<div className='relative mb-4 flex w-full flex-wrap items-stretch'>

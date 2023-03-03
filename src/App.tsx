@@ -6,9 +6,10 @@ import Search from './components/Search';
 import Table from './components/Table';
 import { useFetch } from './services/useFetch';
 import { RootState } from './store/store';
+import { TypePost } from './types/types';
 
-const App = () => {
-	const [value, setValue] = useState('');
+const App: React.FC = () => {
+	const [value, setValue] = useState<string>('');
 
 	const currentPage = useSelector(
 		(state: RootState) => state.tableSlice.currentPage
@@ -18,13 +19,13 @@ const App = () => {
 
 	const { getPosts, posts } = useFetch();
 
-	const perPage = 10;
-	const lastIndex = currentPage * perPage;
-	const firstIndex = lastIndex - perPage;
-	const currentPosts = posts.slice(firstIndex, lastIndex);
+	const perPage: number = 10;
+	const lastIndex: number = currentPage * perPage;
+	const firstIndex: number = lastIndex - perPage;
+	const currentPosts: TypePost[] = posts.slice(firstIndex, lastIndex);
 
 	const getSearchElements = () => {
-		return currentPosts.filter(val => {
+		return currentPosts.filter((val: TypePost) => {
 			if (val.title.toLowerCase().includes(value.toLowerCase())) {
 				return true;
 			} else {

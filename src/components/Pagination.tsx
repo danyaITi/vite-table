@@ -2,14 +2,16 @@ import { useDispatch } from 'react-redux/es/exports';
 import { setCurrentPage } from '../store/reducers/tableSlice';
 import { TypePost } from '../types/types';
 
-const Pagination = ({
-	posts,
-	perPage,
-	currentPage
-}: {
+interface PaginationProps {
 	posts: TypePost[];
 	perPage: number;
 	currentPage: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+	posts,
+	perPage,
+	currentPage
 }) => {
 	const dispatch = useDispatch();
 	return (
