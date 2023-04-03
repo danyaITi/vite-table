@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useNavigate } from 'react-router-dom';
 import Pagination from './components/Pagination';
@@ -24,7 +24,8 @@ const App: React.FC = () => {
 	const firstIndex: number = lastIndex - perPage;
 	const currentPosts: TypePost[] = posts.slice(firstIndex, lastIndex);
 
-	const getSearchElements = () => {
+	const getSearchElements = useMemo(() => {
+		console.log('render');
 		return currentPosts.filter((val: TypePost) => {
 			if (val.title.toLowerCase().includes(value.toLowerCase())) {
 				return true;
@@ -32,18 +33,18 @@ const App: React.FC = () => {
 				return false;
 			}
 		});
-	};
+	}, [value]);
 
 	useEffect(() => {
 		getPosts();
-		getSearchElements();
+		getSearchElements;
 		navigate(`${path}?page=${currentPage}`);
 	}, [path, navigate, currentPage, value]);
 
 	return (
 		<>
 			<Search onSearch={setValue} value={value} />
-			<Table posts={value.length > 1 ? getSearchElements() : currentPosts} />
+			<Table posts={value.length > 1 ? getSearchElements : currentPosts} />
 			<Pagination perPage={perPage} posts={posts} currentPage={currentPage} />
 		</>
 	);

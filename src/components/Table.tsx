@@ -10,6 +10,7 @@ type ObjSort = {
 const Table: React.FC<{ posts: TypePost[] }> = ({ posts }) => {
 	const [sorting, setSorting] = useState<boolean>(false);
 	const [bySort, setBySort] = useState<string>('');
+
 	const obj: ObjSort = [
 		{
 			key: 'id',
@@ -50,7 +51,7 @@ const Table: React.FC<{ posts: TypePost[] }> = ({ posts }) => {
 					<td>{item.body}</td>
 				</tr>
 			));
-	}, [sorting, posts, bySort]);
+	}, [bySort]);
 
 	return (
 		<table className='shadow-xl bg-white'>
